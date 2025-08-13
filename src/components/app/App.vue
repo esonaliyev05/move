@@ -6,7 +6,7 @@
         <SearchPanel />
         <AppFilter />
       </div>
-      <MovieList :movies="movies"  />
+      <MovieList :movies="movies"  @onLike='onLikeHandler' />
       <MovieAddForm  @createMovie="createMovie" />
     </div>
   </div>
@@ -34,13 +34,15 @@ export default {
           name: "Omar",
           viewers: 511,
           favourite: false,
-          like: true,
+          like: false,
+          id: 1,
         },
         {
           name: "Alyorbek Esonaliyev",
           viewers: 411,
           favourite: false,
           like: false,
+          id: 2,
         },
         
       ],
@@ -52,7 +54,16 @@ export default {
       this.movies.push(iteam)
       console.log(iteam);
 
-     }
+     },
+     onLikeHandler(id) {
+  this.movies = this.movies.map(item => {
+    if (item.id === id) {
+      return { ...item, like: !item.like };
+    }
+    return item;
+  });
+}
+
 
 
   }
