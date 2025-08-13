@@ -1,0 +1,21 @@
+<template>
+   <input type="text" class="form-control search-input" placeholder="kinolarni qidrish">
+</template>
+<script>
+export default {
+    
+}
+</script>
+<style >
+
+.search-input{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background-color: #fcfaf5;
+    border-radius: 4px;
+    box-shadow: 15px 15px 15px rgb(0, 0, 0 , 0.15);
+}
+
+    
+</style>
