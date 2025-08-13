@@ -1,12 +1,26 @@
 <template>
 <div class="app-info">
-    <p class="fs-3 text-uppercase">BARCHA KINOLAR SONI: </p>
-    <p class="fs-4 text-uppercase">KO'RILGAN KINOLAR SONI: 0</p>
+    <p class="fs-3 text-uppercase">BARCHA KINOLAR SONI:  {{ allMoviesCount }} </p>
+    <p class="fs-4 text-uppercase">KO'RILGAN KINOLAR SONI: {{ favouriteMoviesCount }}</p>
 
 </div>
 </template>
 
 <script>
+export default {
+    props: {
+        allMoviesCount:{
+            type: Number,
+            required: true,
+
+        },
+        favouriteMoviesCount: {
+            type: Number,
+            required: true,
+        }
+
+    }
+}
 
 </script>
 
