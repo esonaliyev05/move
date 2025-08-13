@@ -6,8 +6,8 @@
         <SearchPanel />
         <AppFilter />
       </div>
-      <MovieList :movies="movies"/>
-      <MovieAddForm />
+      <MovieList :movies="movies"  />
+      <MovieAddForm  @createMovie="createMovie" />
     </div>
   </div>
 </template>
@@ -42,15 +42,22 @@ export default {
           favourite: false,
           like: false,
         },
-        {
-          name: "Ally oor",
-          viewers: 811,
-          favourite: true,
-          like: false,
-        },
+        
       ],
     };
   },
+
+  methods:{
+     createMovie(iteam) {
+      this.movies.push(iteam)
+      console.log(iteam);
+
+     }
+
+
+  }
+
+
 };
 </script>
 
