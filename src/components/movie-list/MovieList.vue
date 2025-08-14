@@ -2,6 +2,8 @@
   <ul class="movie-list list-group">
     <MoveListItem v-for="movie in movies" v-bind:movie="movie" :key="movie.id" 
     @onToggle="$emit('onToggle' , $event)" 
+    @onRemove="$emit('onRemove' , movie.id)"
+    
     />
   </ul>
 </template>
