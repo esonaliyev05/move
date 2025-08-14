@@ -3,10 +3,10 @@
     <div class="content">
       <Appinfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c => c.favourite).length"/>
       <div class="serach-panel">
-        <SearchPanel />
+        <SearchPanel :updateTermHandler="updateTermHandler  "  />
         <AppFilter />
       </div>
-      <MovieList :movies="movies"  @onToggle='onToggleHandler' @onRemove="onRemoveHandler"/>
+      <MovieList :movies="onSearchHandler(movies , term)"  @onToggle='onToggleHandler' @onRemove="onRemoveHandler"  />
       <MovieAddForm  @createMovie="createMovie" />
     </div>
   </div>
@@ -46,6 +46,11 @@ export default {
         },
         
       ],
+     term: '',
+
+
+
+
     };
   },
 
@@ -66,22 +71,31 @@ export default {
 
 onRemoveHandler(id) {
   this.movies = this.movies.filter(c => c.id !== id)
+},
+
+onSearchHandler(arr, term){
+  if (term.length == 0) {
+    return arr
+    
+  }
+  return arr.filter(c => c.name.toLowerCase().indexOf(term) > -1)
+},
+
+updateTermHandler(term){
+   this.term = term
+
 }
-
-
-
 }
-
-
 };
 </script>
 
 <style>
+
+
 .app {
   height: 100vh;
   color: black;
 }
-
 .app .content {
   width: 800px;
   min-height: 700px;
@@ -90,7 +104,6 @@ onRemoveHandler(id) {
   padding: 5px 10px;
   border: 1px solid black;
 }
-
 .content .serach-panel {
   margin-top: 2rem;
   padding: 1.5rem;
