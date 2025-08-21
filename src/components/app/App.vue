@@ -4,14 +4,18 @@
       <Appinfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c => c.favourite).length"/>
       <div class="serach-panel">
         <SearchPanel :updateTermHandler="updateTermHandler  "  />
-        <AppFilter />
+        <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filterName" />
       </div>
-      <MovieList :movies="onFilterHandler(onSearchHandler(movies , term), filter )"  @onToggle='onToggleHandler' @onRemove="onRemoveHandler"  />
+      <MovieList
+       :movies="onFilterHandler(onSearchHandler(movies , term), filter )"
+         @onToggle='onToggleHandler'
+        @onRemove="onRemoveHandler"  />
       <MovieAddForm  @createMovie="createMovie" />
     </div>
   </div>
 </template>
 <script>
+
 import Appinfo from "../app-info/Appinfo.vue";
 import SearchPanel from "../search-panel/SearchPanel.vue";
 import AppFilter from "../app-filter/AppFilter.vue";
@@ -27,6 +31,7 @@ export default {
     MovieAddForm,
 
   },
+  
   data() {
     return {
       movies: [
@@ -53,9 +58,8 @@ export default {
   },
 
   methods:{
-     createMovie(iteam) {
-      this.movies.push(iteam)
-      console.log(iteam);
+     createMovie(item) {
+      this.movies.push(item)
 
      },
      onToggleHandler({id , prop}) {
@@ -98,6 +102,11 @@ onFilterHandler(arr , filter) {
 
 updateTermHandler(term){
    this.term = term
+
+},
+
+updateFilterHandler(filter) {
+  this.filter = filter
 
 }
 }
